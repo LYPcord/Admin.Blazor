@@ -26,8 +26,8 @@ namespace Admin.BBApp.WebAssembly
 
             builder.RootComponents.Add<App>("app");
 
-            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("http://localhost:8000/") });
+           // builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             // 增加 BootstrapBlazor 组件
             builder.Services.AddBootstrapBlazor();

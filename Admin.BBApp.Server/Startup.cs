@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Net.Http;
 
 namespace Admin.BBApp.Server
 {
@@ -24,7 +26,7 @@ namespace Admin.BBApp.Server
             services.AddServerSideBlazor();
 
             services.AddBootstrapBlazor();
-
+            services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("http://localhost:8000/") });
             services.AddSingleton<WeatherForecastService>();
         }
 

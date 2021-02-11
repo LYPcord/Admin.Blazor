@@ -32,7 +32,7 @@
         /// <summary>
         /// 跨域地址，默认 http://*:9000
         /// </summary>
-        public string[] CorUrls { get; set; }// = new[]{ "http://*:9000" };
+        public string[] CorUrls { get; set; }// = new[]{ "http://localhost:50855/" };
 
         /// <summary>
         /// 租户类型

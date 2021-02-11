@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
@@ -13,6 +13,11 @@
     <ItemGroup>
         <PackageReference Include="BootstrapBlazor" Version="5.0.14" />
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Admin.Core.Common\Admin.Core.Common.csproj" />
+      <ProjectReference Include="..\Admin.Core.Services\Admin.Core.Service.csproj" />
     </ItemGroup>
 
 </Project>

@@ -322,6 +322,25 @@ namespace Admin.Core
 
             //阻止NLog接收状态消息
             services.Configure<ConsoleLifetimeOptions>(opts => opts.SuppressStatusMessages = true);
+
+            #region 解决输入输出参数首字母变小写的问题
+            //services.AddControllers().AddNewtonsoftJson(options =>
+            //{
+            //    //忽略循环引用
+            //    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            //    //不使用驼峰样式的key
+            //    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+            //    //设置时间格式
+            //    options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+            //});
+            #endregion
+
+            #region 解决文档中样例参数说明中参数首字母变小写的问题
+            services.AddControllers().AddJsonOptions(config =>
+            {
+                config.JsonSerializerOptions.PropertyNamingPolicy = null;
+            });
+            #endregion
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
