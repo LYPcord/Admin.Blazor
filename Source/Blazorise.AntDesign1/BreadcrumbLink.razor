@@ -1,0 +1,23 @@
+﻿@inherits Blazorise.BreadcrumbLink
+<span class="@ClassNames">
+    @if ( ParentBreadcrumbItem?.Active == true )
+    {
+        @ChildContent
+    }
+    else
+    {
+        @if ( To != null )
+        {
+            <Blazorise.Link Class="@ClassNames" Style="@StyleNames" To="@To" Target="@Target" Title="@Title" Match="@Match" Attributes="@Attributes">
+                @ChildContent
+            </Blazorise.Link>
+        }
+        else
+        {
+            <a class="@ClassNames" style="@StyleNames" title="@Title" @onclick="@ClickHandler" @attributes="@Attributes">
+                @ChildContent
+            </a>
+        }
+    }
+</span>
+<span class="ant-breadcrumb-separator">/</span>

@@ -1,0 +1,11 @@
+﻿@inherits BaseTypographyComponent
+@if ( !HasCustomRegistration )
+{
+    <div class="@ClassNames" style="@StyleNames" @attributes="@Attributes">
+        @ChildContent
+    </div>
+}
+else
+{
+    @RenderCustomComponent()
+}

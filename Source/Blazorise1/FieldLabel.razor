@@ -1,0 +1,11 @@
+﻿@inherits BaseSizableFieldComponent
+@if ( !HasCustomRegistration )
+{
+    <label class="@ClassNames" style="@StyleNames" for="@For" @attributes="@Attributes">
+        @ChildContent
+    </label>
+}
+else
+{
+    @RenderCustomComponent()
+}

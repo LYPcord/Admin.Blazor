@@ -1,0 +1,18 @@
+﻿@inherits BaseComponent
+@if ( !HasCustomRegistration )
+{
+    @if ( IconName is RenderFragment )
+    {
+        <div class="@ClassNames" style="@StyleNames">
+            @( IconName as RenderFragment )
+        </div>
+    }
+    else
+    {
+        <Icon Name="@IconName" Class="@ClassNames" Style="@StyleNames" />
+    }
+}
+else
+{
+    @RenderCustomComponent()
+}

@@ -1,0 +1,10 @@
+﻿@typeparam TValue
+@inherits BaseComponent
+@if ( !HasCustomRegistration )
+{
+    <option class="@ClassNames" style="@StyleNames" value="@StringValue" selected="@Selected" disabled="@Disabled" @attributes="@Attributes">@ChildContent</option>
+}
+else
+{
+    @RenderCustomComponent()
+}

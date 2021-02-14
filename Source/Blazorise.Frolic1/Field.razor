@@ -1,0 +1,18 @@
+﻿@inherits Blazorise.Field
+<CascadingValue Value=this>
+    <div class="@ClassNames" style="@StyleNames" @attributes="@Attributes">
+        @ChildContent
+    </div>
+</CascadingValue>
+@code{
+    protected override void BuildClasses( ClassBuilder builder )
+    {
+        if ( IsFields && ColumnSize != null )
+            builder.Append( ClassProvider.FieldColumn() );
+
+        if ( !IsFields && ColumnSize != null )
+            builder.Append( ColumnSize.Class( ClassProvider ) );
+
+        base.BuildClasses( builder );
+    }
+}

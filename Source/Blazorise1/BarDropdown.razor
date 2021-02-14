@@ -1,0 +1,15 @@
+﻿@inherits BaseComponent
+@if ( !HasCustomRegistration )
+{
+    <CascadingValue Value=this>
+        <CascadingValue Value="@Store">
+            <div class="@ClassNames" style="@StyleNames" @attributes="@Attributes" data-visible="@VisibleString">
+                @ChildContent
+            </div>
+        </CascadingValue>
+    </CascadingValue>
+}
+else
+{
+    @RenderCustomComponent()
+}

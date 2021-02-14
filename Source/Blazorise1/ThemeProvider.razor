@@ -1,0 +1,8 @@
+@if ( WriteVariables )
+{
+    @((MarkupString)GetVariablesTag())
+}
+<CascadingValue Value=Theme>
+    @ChildContent
+</CascadingValue>
+@((MarkupString)GetStylesTag())

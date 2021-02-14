@@ -1,0 +1,20 @@
+﻿@typeparam TValue
+@inherits Blazorise.NumericEdit<TValue>
+@if ( ParentIsFieldBody )
+{
+    <div class="field">
+        <div class="control">
+            <input @ref="ElementRef" id="@ElementId" inputmode="numeric" class="@ClassNames" style="@StyleNames" placeholder="@Placeholder" disabled="@Disabled" readonly="@ReadOnly" size="@VisibleCharacters" step="@Step" pattern="@Pattern" value="@CurrentValueAsString" @onchange="@OnChangeHandler" @oninput="@OnInputHandler" @onfocus="@OnFocus" @onfocusin="@FocusIn" @onfocusout="@FocusOut"/>
+            @ChildContent
+        </div>
+        @Feedback
+    </div>
+}
+else
+{
+    <div class="control">
+        <input @ref="ElementRef" id="@ElementId" inputmode="numeric" class="@ClassNames" style="@StyleNames" placeholder="@Placeholder" disabled="@Disabled" readonly="@ReadOnly" size="@VisibleCharacters" step="@Step" pattern="@Pattern" value="@CurrentValueAsString" @onchange="@OnChangeHandler" @oninput="@OnInputHandler" @onfocus="@OnFocus" @onfocusin="@FocusIn" @onfocusout="@FocusOut"/>
+        @ChildContent
+    </div>
+    @Feedback
+}
