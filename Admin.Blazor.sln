@@ -59,6 +59,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazorise.WebAssembly.Bulma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazorise.Server.Bulma", "Web\Blazorise.Server.Bulma\Blazorise.Server.Bulma.csproj", "{444497E3-75D2-4C8B-8A51-5CFE0608D456}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazorise.WebAssembly.AntDesign", "Web\Blazorise.WebAssembly.AntDesign\Blazorise.WebAssembly.AntDesign.csproj", "{5817B13F-C81D-4963-9DEE-9F711D37D466}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +167,10 @@ Global
 		{444497E3-75D2-4C8B-8A51-5CFE0608D456}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{444497E3-75D2-4C8B-8A51-5CFE0608D456}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{444497E3-75D2-4C8B-8A51-5CFE0608D456}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5817B13F-C81D-4963-9DEE-9F711D37D466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5817B13F-C81D-4963-9DEE-9F711D37D466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5817B13F-C81D-4963-9DEE-9F711D37D466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5817B13F-C81D-4963-9DEE-9F711D37D466}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -190,6 +196,7 @@ Global
 		{51FB83FF-43F4-4606-8A45-2B8099F63F66} = {4DC44C11-D8ED-4F68-AF56-67071A684C43}
 		{AFA1698F-AA02-4702-95B7-1966EB781E7A} = {4DC44C11-D8ED-4F68-AF56-67071A684C43}
 		{444497E3-75D2-4C8B-8A51-5CFE0608D456} = {4DC44C11-D8ED-4F68-AF56-67071A684C43}
+		{5817B13F-C81D-4963-9DEE-9F711D37D466} = {4DC44C11-D8ED-4F68-AF56-67071A684C43}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB40D0C5-E3EA-4A9B-86C2-38F0BB33FC04}

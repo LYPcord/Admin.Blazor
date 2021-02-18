@@ -1,0 +1,44 @@
+﻿@layout LoginLayout
+@page "/account/login"
+<Row>
+    <Column ColumnSize="ColumnSize.Is4.Is4.WithOffset">
+        <Card Margin="Margin.Is4.FromBottom">
+            <CardHeader>
+                <CardTitle>登录</CardTitle>
+            </CardHeader>
+            <CardBody>
+                <Field>
+                    <Addons>
+                        <Addon AddonType="AddonType.Start">
+                            <AddonLabel>
+                                <Icon Name="IconName.User" />
+                            </AddonLabel>
+                        </Addon>
+                        <Addon AddonType="AddonType.Body">
+                            <TextEdit Placeholder="用户名" />
+                        </Addon>
+                    </Addons>
+                </Field>
+                <Field>
+                    <Addons>
+                        <Addon AddonType="AddonType.Start">
+                            <AddonLabel>
+                                <Icon Name="IconName.Undo" />
+                            </AddonLabel>
+                        </Addon>
+                        <Addon AddonType="AddonType.Body">
+                            <TextEdit Role="TextRole.Password" Placeholder="密码" />
+                        </Addon>
+                    </Addons>
+                </Field>
+                <Field>
+                    <Check TValue="bool">记住我？</Check>
+                </Field>
+                    <Button Color="Color.Primary">登  录</Button>
+            </CardBody>
+        </Card>
+    </Column>
+</Row>
+@code {
+
+}
