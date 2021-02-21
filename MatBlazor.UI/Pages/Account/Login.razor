@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <MatButton class="float-right" Type="submit" Raised="true" tabindex="3">Login</MatButton>
-                @*<MatCheckbox @bind-Value="false" class="filled-in chk-col-blue">Keep me logged in</MatCheckbox>}*@
+                <MatCheckbox @bind-Value="@loginViewModel.RememberMe" class="filled-in chk-col-blue">Keep me logged in</MatCheckbox>
             </div>
         </fieldset>
     </EditForm>
@@ -36,8 +36,8 @@
         <MatButton class="float-left" OnClick="@SubmitLogin" Raised="true">Sign up</MatButton>
     </div>
 </MatCard>
-@*<MatAccordion>
-    <MatExpansionPanel @bind-Expanded="true">
+<MatAccordion>
+    <MatExpansionPanel @bind-Expanded="@loginViewModel.RememberMe">
         <MatExpansionPanelSummary>
             <MatExpansionPanelHeader>Forgot your password?</MatExpansionPanelHeader>
             <MatExpansionPanelSubHeader></MatExpansionPanelSubHeader>
@@ -59,32 +59,32 @@
 
 <br />
 <MatCard>
-    <div class="hidden-mdc-down">
+    @*<div class="hidden-mdc-down">
         <MatIconButton Icon="home" Class="float-left" Link="/"/>
-    </div>
+    </div>*@
     <div class="logo">
-        <a href="/" title="Home"><img src="_content/BlazorBoilerplate.Theme.Material/images/logo.svg" style="width:100px;" title="Home" alt="Home" /><br />Home</a>
+        <a href="/" title="Home"><img src="_content/MatBlazor.UI/images/logo.svg" style="width:100px;" title="Home" alt="Home" /><br />Home</a>
         <br />
         <h4>Sign in with</h4>
     </div>
     <div style="text-align: center">
 
         <div class="form-group">
-            <MatButton Style="min-width: 140px;" OnClick="@(() => SubmitLogin())" Raised="true"><img height="18" src="/images/logo.svg" /></MatButton>
+            <MatButton Style="min-width: 140px;" OnClick="@(() => SubmitLogin())" Raised="true"><img height="18" src="/images/google.svg" /></MatButton>
         </div>
 
         <div class="form-group">
-            <MatButton Style="min-width: 140px;" OnClick="@(() => SubmitLogin())" Raised="true"><img height="18" src="/images/logo.svg" />&nbsp;DisplayName</MatButton>
+            <MatButton Style="min-width: 140px;" OnClick="@(() => SubmitLogin())" Raised="true"><img height="18" src="/images/google.svg" /></MatButton>
         </div>
 
         <div class="form-group">
-            <MatButton Style="min-width: 140px;" OnClick="@(() => SubmitLogin())" Raised="true" Label="DisplayName" />
+            <MatButton Style="min-width: 140px;" OnClick="@(() => SubmitLogin())" Raised="true"><img height="18" src="/images/google.svg" /></MatButton>
         </div>
 
     </div>
 </MatCard>
 
-<div class="alert alert-warning">
+@*<div class="alert alert-warning">
     <strong>Invalid login request</strong>
     There are no login schemes configured for this client.
 </div>*@
@@ -97,6 +97,7 @@
     {
         public string UserName { get; set; }
         public string Password { get; set; }
+        public bool RememberMe { get; set; }
     }
 
     async Task SubmitLogin()
