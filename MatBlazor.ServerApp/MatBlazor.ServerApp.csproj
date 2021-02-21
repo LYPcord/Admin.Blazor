@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Shared\**" />
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="Shared\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="Shared\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="Shared\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\MatBlazor.UI\MatBlazor.UI.csproj" />
+    <ProjectReference Include="..\MatBlazor\MatBlazor.csproj" />
+  </ItemGroup>
+
+</Project>
