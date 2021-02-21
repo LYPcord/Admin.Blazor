@@ -1,4 +1,3 @@
-using MatBlazor.UI.Models;
 using MatBlazor.UI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,10 +32,6 @@ namespace MatBlazor.ServerApp
                 
             });
 
-
-
-            services.AddSingleton<AppModel>();
-            services.AddScoped<UserAppModel>();
             services.AddScoped<DemoUserService>();
             services.AddMatToaster(config =>
             {

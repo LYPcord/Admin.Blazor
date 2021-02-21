@@ -1,5 +1,106 @@
-﻿<h3>Login</h3>
+﻿@page "/Account/Login"
+
+@layout LoginLayout
+@inject NavigationManager navigationManager
+@inject NavigationManager NavigationManager
+@inject IJSRuntime js
+
+<MatCard>
+    <div class="hidden-mdc-down">
+        <MatIconButton Icon="home" Class="float-left" Link="/" />
+    </div>
+    <div class="logo">
+        <a href="/" title="Home"><img src="_content/MatBlazor.UI/images/logo.svg" style="width:100px;" title="Home" alt="Home" /><br />Home</a>
+        <br />
+        <h4>Log in</h4>
+    </div>
+    <EditForm Model="@loginViewModel" OnValidSubmit="@SubmitLogin">
+        <FluentValidationValidator />
+        <ValidationSummary />
+        <fieldset>
+            <div class="form-group">
+                <MatTextField @ref="UserNameInput" @bind-Value="@loginViewModel.UserName" Label="UserName" Icon="person" IconTrailing="true" FullWidth="true" Required="true" tabindex="1"></MatTextField>
+                @*<AutoFocus Control=@(() => UserNameInput.InputRef) />*@
+            </div>
+            <div class="form-group">
+                <MatTextField @bind-Value="@loginViewModel.Password" Label="Password" Icon="lock_outline" IconTrailing="true" FullWidth="true" Required="true" Type="password" tabindex="2"></MatTextField>
+            </div>
+            <div class="form-group">
+                <MatButton class="float-right" Type="submit" Raised="true" tabindex="3">Login</MatButton>
+                @*<MatCheckbox @bind-Value="false" class="filled-in chk-col-blue">Keep me logged in</MatCheckbox>}*@
+            </div>
+        </fieldset>
+    </EditForm>
+    <hr />
+    <div>
+        <MatButton class="float-left" OnClick="@SubmitLogin" Raised="true">Sign up</MatButton>
+    </div>
+</MatCard>
+@*<MatAccordion>
+    <MatExpansionPanel @bind-Expanded="true">
+        <MatExpansionPanelSummary>
+            <MatExpansionPanelHeader>Forgot your password?</MatExpansionPanelHeader>
+            <MatExpansionPanelSubHeader></MatExpansionPanelSubHeader>
+        </MatExpansionPanelSummary>
+        <MatExpansionPanelDetails>
+            <EditForm Model="@loginViewModel" OnValidSubmit="@SubmitLogin">
+                <FluentValidationValidator />
+                <ValidationSummary />
+                <div class="form-group">
+                    <MatTextField @bind-Value="@loginViewModel.Password" Label="Email" Icon="mail_outline" IconTrailing="true" FullWidth="true" Required="true"></MatTextField>
+                </div>
+                <div class="form-group">
+                    <MatButton class="float-right" Type="submit" Raised="true">Submit</MatButton>
+                </div>
+            </EditForm>
+        </MatExpansionPanelDetails>
+    </MatExpansionPanel>
+</MatAccordion>
+
+<br />
+<MatCard>
+    <div class="hidden-mdc-down">
+        <MatIconButton Icon="home" Class="float-left" Link="/"/>
+    </div>
+    <div class="logo">
+        <a href="/" title="Home"><img src="_content/BlazorBoilerplate.Theme.Material/images/logo.svg" style="width:100px;" title="Home" alt="Home" /><br />Home</a>
+        <br />
+        <h4>Sign in with</h4>
+    </div>
+    <div style="text-align: center">
+
+        <div class="form-group">
+            <MatButton Style="min-width: 140px;" OnClick="@(() => SubmitLogin())" Raised="true"><img height="18" src="/images/logo.svg" /></MatButton>
+        </div>
+
+        <div class="form-group">
+            <MatButton Style="min-width: 140px;" OnClick="@(() => SubmitLogin())" Raised="true"><img height="18" src="/images/logo.svg" />&nbsp;DisplayName</MatButton>
+        </div>
+
+        <div class="form-group">
+            <MatButton Style="min-width: 140px;" OnClick="@(() => SubmitLogin())" Raised="true" Label="DisplayName" />
+        </div>
+
+    </div>
+</MatCard>
+
+<div class="alert alert-warning">
+    <strong>Invalid login request</strong>
+    There are no login schemes configured for this client.
+</div>*@
 
 @code {
 
+    LoginInputModel loginViewModel = new LoginInputModel();
+    private MatTextField<string> UserNameInput;
+    public class LoginInputModel
+    {
+        public string UserName { get; set; }
+        public string Password { get; set; }
+    }
+
+    async Task SubmitLogin()
+    {
+
+    }
 }
