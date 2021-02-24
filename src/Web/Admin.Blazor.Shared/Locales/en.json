@@ -1,0 +1,12 @@
+{
+  "Admin.Blazor.Shared.Pages.TableDemo.BindItem": {
+    "Name": "Name",
+    "DateTime": "DateTime",
+    "Address": "Address",
+    "Count": "Count",
+    "Complete": "Complete",
+    "Education": "Education",
+    "Name.Required": "{0} is required",
+    "Address.Required": "{0} is required"
+  }
+}

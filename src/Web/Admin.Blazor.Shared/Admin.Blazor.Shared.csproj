@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>Admin.Blazor.Shared</AssemblyName>
+    <RootNamespace>Admin.Blazor.Shared</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Locales\*.json" />
+    <EmbeddedResource Include="Locales\*.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="BootstrapBlazor" Version="5.0.16-beta01" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.3" />
+  </ItemGroup>
+</Project>
