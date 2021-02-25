@@ -99,7 +99,8 @@ namespace Admin.Core
                 options.AddPolicy("Limit", policy =>
                 {
                     policy
-                    .WithOrigins(_appConfig.CorUrls)
+                    //.WithOrigins(_appConfig.CorUrls)
+                    .WithOrigins("http://localhost:50855")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials();
@@ -292,9 +293,18 @@ namespace Admin.Core
                 //忽略循环引用
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 //使用驼峰 首字母小写
-                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                //options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 //设置时间格式
                 options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+
+                //不使用驼峰样式的key
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+            });
+
+            //2、解决文档中样例参数说明中参数首字母变小写的问题。
+            services.AddControllers().AddJsonOptions(config =>
+            {
+                config.JsonSerializerOptions.PropertyNamingPolicy = null;
             });
             #endregion
 

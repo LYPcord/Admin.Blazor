@@ -15,10 +15,15 @@
     <EmbeddedResource Include="Locales\*.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="BootstrapBlazor" Version="5.0.16-beta01" />
+    <PackageReference Include="BootstrapBlazor" Version="5.0.16" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Admin\Admin.Core.Model\Admin.Core.Model.csproj" />
+    <ProjectReference Include="..\..\Admin\Admin.Core.Services\Admin.Core.Service.csproj" />
   </ItemGroup>
 </Project>

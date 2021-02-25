@@ -1,11 +1,14 @@
 using BootstrapBlazor.Components;
 using Admin.Blazor.Shared.Data;
+using Admin.Blazor.Shared.Data.Admin;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using System.Net.Http;
+using System;
 
 namespace Admin.Blazor.Server
 {
@@ -25,6 +28,11 @@ namespace Admin.Blazor.Server
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
+            services.AddScoped(sp => new HttpClient
+            {
+                BaseAddress = new Uri("http://localhost:8000/")
+            });
+
             services.AddBootstrapBlazor(setupAction: options =>
             {
                 options.AdditionalJsonAssemblies = new[] { GetType().Assembly };
@@ -39,6 +47,7 @@ namespace Admin.Blazor.Server
             });
 
             services.AddSingleton<WeatherForecastService>();
+            services.AddSingleton<AuthService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
