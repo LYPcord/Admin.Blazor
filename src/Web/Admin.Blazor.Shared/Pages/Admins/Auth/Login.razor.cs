@@ -26,27 +26,13 @@ namespace Admin.Blazor.Shared.Pages.Admins.Auth
             base.OnInitialized();
         }
 
-        private Task OnInvalidSubmit1(EditContext context)
+        private async Task HandleLogin(EditContext context) 
         {
-            return Task.CompletedTask;
-        }
-
-        private Task OnValidSubmit(EditContext context)
-        {
-            return Task.CompletedTask;
-        }
-
-        private Task OnInvalidSubmit(EditContext context)
-        {
-            return Task.CompletedTask;
-        }
-
-        private async Task<string> OnSubmit(EditContext context) 
-        {
-
-            var token =await _authService.LoginAsync(Model);
-            ShowMessage(Color.Success,"66");
-            return "";
+            var rm =await _authService.LoginAsync(Model);
+            if (rm.Code==1)
+                ShowMessage(Color.Success, rm.Data);
+            else
+                ShowMessage(Color.Warning, rm.Msg);
         }
         private Message MessageElement { get; set; }
 

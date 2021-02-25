@@ -1,7 +1,7 @@
 ﻿@page "/admin/auth/login"
 @layout LoginLayout
 
-<ValidateForm class="form-inline" Model="@Model" OnSubmit="@OnSubmit">
+<ValidateForm class="form-inline" Model="@Model" OnValidSubmit="@HandleLogin">
     <div class="row">
         <div class="form-group col-12">
             <BootstrapInput @bind-Value="@Model.UserName" />
