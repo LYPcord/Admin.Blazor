@@ -31,8 +31,7 @@ namespace Admin.Blazor.WebAssembly
             builder.Services.AddBootstrapBlazor();
 
             builder.Services.AddSingleton<WeatherForecastService>();
-            builder.Services.AddSingleton<AuthService>();
-            builder.Services.AddSingleton<HttpHelpers>();
+            builder.Services.AddSingleton<IAuthService, AuthService>();
 
             var host = builder.Build();
 

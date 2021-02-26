@@ -16,7 +16,7 @@ namespace Admin.Blazor.Shared.Pages.Admins.Auth
     public partial class Login
     {
         private AuthLoginInput Model = new AuthLoginInput();
-        [Inject] public AuthService _authService { get; set; }
+        [Inject] public IAuthService _authService { get; set; }
 
         /// <summary>
         /// OnInitialized 方法

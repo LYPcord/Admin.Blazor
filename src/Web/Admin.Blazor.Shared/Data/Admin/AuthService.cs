@@ -6,17 +6,24 @@ using Admin.Core.Service.Admin.Auth.Input;
 
 namespace Admin.Blazor.Shared.Data.Admin
 {
-    public class AuthService
+    public interface IAuthService
     {
-        private readonly HttpHelpers _httpClient;
-        public AuthService(HttpHelpers httpClient)
+        Task<ResponseModel<string>> LoginAsync(AuthLoginInput input);
+    }
+    public class AuthService: IAuthService
+    {
+        private readonly HttpClient _httpClient;
+
+        public AuthService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
 
         public async Task<ResponseModel<string>> LoginAsync(AuthLoginInput input)
         {
-            return await _httpClient.PostAsJsonAsync("api/Admin/Auth/Login", input);
+            await _httpClient.PostAsJsonAsync("api/Admin/Auth/Login", input);
+
+            return new ResponseModel<string> { };
         }   
     }
 }
