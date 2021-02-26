@@ -1,16 +1,17 @@
 ﻿using Admin.Core;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Threading.Tasks;
 
 namespace Admin.Blazor.Shared.Data
 {
     public static class HttpResponseMessageExpansion
     {
 
-        public static ResponseModel<string> ResponseJson(this HttpResponseMessage response)
+        public static async Task<ResponseModel<string>> ResponseJson(this HttpResponseMessage response)
         {
             response.EnsureSuccessStatusCode();
-            var rm = response.Content.ReadFromJsonAsync<ResponseModel>().Result;
+            var rm = await response.Content.ReadFromJsonAsync<ResponseModel>();
             if (rm.Code == 1)
             {
                 return new ResponseModel<string>()
@@ -27,10 +28,10 @@ namespace Admin.Blazor.Shared.Data
             };
         }
 
-        public static ResponseModel<T> ResponseObject<T>(this HttpResponseMessage response)
+        public static async Task<ResponseModel<T>> ResponseObject<T>(this HttpResponseMessage response)
         {
             response.EnsureSuccessStatusCode();
-            var rm = response.Content.ReadFromJsonAsync<ResponseModel>().Result;
+            var rm = await response.Content.ReadFromJsonAsync<ResponseModel>();
             if (rm.Code == 1)
             {
                 return new ResponseModel<T>()
