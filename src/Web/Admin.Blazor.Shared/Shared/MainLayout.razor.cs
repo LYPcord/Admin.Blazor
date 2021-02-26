@@ -12,6 +12,7 @@ namespace Admin.Blazor.Shared.Shared
     public sealed partial class MainLayout
     {
         [Inject] public AuthService AuthService { get; set; }
+        [Inject] public NavigationManager NavigationManager { get; set; }
         private bool UseTabSet { get; set; } = true;
 
         private string Theme { get; set; } = "";
@@ -32,7 +33,7 @@ namespace Admin.Blazor.Shared.Shared
         private string NickName { get; set; }
 
         /// <summary>
-        /// OnInitializedAsync 方法
+        /// 异步初始化时 方法
         /// </summary>
         protected override async Task OnInitializedAsync()
         {

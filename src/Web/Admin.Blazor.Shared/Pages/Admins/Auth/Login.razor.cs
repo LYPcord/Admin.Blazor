@@ -19,7 +19,7 @@ namespace Admin.Blazor.Shared.Pages.Admins.Auth
         [Inject] public NavigationManager NavigationManager { get; set; }
 
         /// <summary>
-        /// OnInitialized 方法
+        /// OnInitializedAsync 方法
         /// </summary>
         protected override async Task OnInitializedAsync()
         {
@@ -32,15 +32,6 @@ namespace Admin.Blazor.Shared.Pages.Admins.Auth
            
             if (rm.Code==1)
                 NavigationManager.NavigateTo("/");
-            else
-                ShowMessage(Color.Warning, rm.Msg);
-        }
-
-        private async Task GetUserInfoAsync()
-        {
-            var rm = await AuthService.GetUserInfoAsync();
-            if (rm.Code == 1)
-                ShowMessage(Color.Success, rm.Data.Menus.Length.ToString());
             else
                 ShowMessage(Color.Warning, rm.Msg);
         }

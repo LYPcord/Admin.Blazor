@@ -7,7 +7,7 @@ namespace Admin.Blazor.Shared.Data
     public static class HttpResponseMessageExpansion
     {
 
-        public static ResponseModel<string> Response(this HttpResponseMessage response)
+        public static ResponseModel<string> ResponseJson(this HttpResponseMessage response)
         {
             response.EnsureSuccessStatusCode();
             var rm = response.Content.ReadFromJsonAsync<ResponseModel>().Result;
@@ -27,7 +27,7 @@ namespace Admin.Blazor.Shared.Data
             };
         }
 
-        public static ResponseModel<T> Response<T>(this HttpResponseMessage response)
+        public static ResponseModel<T> ResponseObject<T>(this HttpResponseMessage response)
         {
             response.EnsureSuccessStatusCode();
             var rm = response.Content.ReadFromJsonAsync<ResponseModel>().Result;
