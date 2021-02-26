@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 using Admin.Blazor.Shared.Data;
 using Admin.Blazor.Shared.Data.Admin;
+using Microsoft.AspNetCore.Components.Authorization;
+using Blazored.LocalStorage;
 
 namespace Admin.Blazor.WebAssembly
 {
@@ -32,8 +34,12 @@ namespace Admin.Blazor.WebAssembly
             // 增加 BootstrapBlazor 组件
             builder.Services.AddBootstrapBlazor();
 
+            builder.Services.AddBlazoredLocalStorage();
+            builder.Services.AddAuthorizationCore();
+
+            builder.Services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
             builder.Services.AddSingleton<WeatherForecastService>();
-            builder.Services.AddSingleton<AuthService>();
+            builder.Services.AddScoped<AuthService>();
 
             var host = builder.Build();
 

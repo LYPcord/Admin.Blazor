@@ -9,6 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using System.Net.Http;
 using System;
+using Microsoft.AspNetCore.Components.Authorization;
+using Blazored.LocalStorage;
 
 namespace Admin.Blazor.Server
 {
@@ -27,6 +29,8 @@ namespace Admin.Blazor.Server
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddBlazoredLocalStorage();
+            services.AddAuthorizationCore();
 
             services.AddTransient(sp => new HttpClient
             {
@@ -45,9 +49,9 @@ namespace Admin.Blazor.Server
                 localizerOption.SupportedCultures = supportedCultures;
                 localizerOption.SupportedUICultures = supportedCultures;
             });
-
+            services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
             services.AddSingleton<WeatherForecastService>();
-            services.AddSingleton<AuthService>();
+            services.AddScoped<AuthService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

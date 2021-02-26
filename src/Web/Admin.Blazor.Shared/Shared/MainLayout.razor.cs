@@ -1,5 +1,8 @@
+using Admin.Blazor.Shared.Data.Admin;
 using BootstrapBlazor.Components;
+using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Admin.Blazor.Shared.Shared
 {
@@ -8,6 +11,7 @@ namespace Admin.Blazor.Shared.Shared
     /// </summary>
     public sealed partial class MainLayout
     {
+        [Inject] public AuthService AuthService { get; set; }
         private bool UseTabSet { get; set; } = true;
 
         private string Theme { get; set; } = "";
@@ -24,15 +28,20 @@ namespace Admin.Blazor.Shared.Shared
 
         private List<MenuItem> Menus { get; set; }
 
+        private string UserName { get; set; }
+        private string NickName { get; set; }
+
         /// <summary>
-        /// OnInitialized 方法
+        /// OnInitializedAsync 方法
         /// </summary>
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
-            base.OnInitialized();
+            await base.OnInitializedAsync();
 
             // TODO: 菜单获取可以通过数据库获取，此处为示例直接拼装的菜单集合
             Menus = GetIconSideMenuItems();
+
+            await GetUserInfoAsync();
         }
 
         private static List<MenuItem> GetIconSideMenuItems()
@@ -47,6 +56,16 @@ namespace Admin.Blazor.Shared.Shared
             };
 
             return menus;
+        }
+
+        private async Task GetUserInfoAsync()
+        {
+            var rm = await AuthService.GetUserInfoAsync();
+            if (rm.Code == 1)
+            {
+                UserName = rm.Data.User.UserName;
+                NickName = rm.Data.User.NickName;
+            }
         }
     }
 }

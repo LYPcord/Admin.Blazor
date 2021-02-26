@@ -9,26 +9,41 @@ namespace Admin.Blazor.Shared.Pages.Admins.Auth
 {
     public partial class Login
     {
+
+#nullable disable
+        private Message MessageElement { get; set; }
+#nullable disable
+
         private AuthLoginInput Model = new AuthLoginInput();
         [Inject] public AuthService AuthService { get; set; }
+        [Inject] public NavigationManager NavigationManager { get; set; }
 
         /// <summary>
         /// OnInitialized 方法
         /// </summary>
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
-            base.OnInitialized();
+            await base.OnInitializedAsync();
         }
 
         private async Task HandleLogin(EditContext context) 
         {
             var rm =await AuthService.LoginAsync(Model);
+           
             if (rm.Code==1)
-                ShowMessage(Color.Success, rm.Data);
+                NavigationManager.NavigateTo("/");
             else
                 ShowMessage(Color.Warning, rm.Msg);
         }
-        private Message MessageElement { get; set; }
+
+        private async Task GetUserInfoAsync()
+        {
+            var rm = await AuthService.GetUserInfoAsync();
+            if (rm.Code == 1)
+                ShowMessage(Color.Success, rm.Data.Menus.Length.ToString());
+            else
+                ShowMessage(Color.Warning, rm.Msg);
+        }
 
         [Inject] public MessageService? MessageService { get; set; }
 
