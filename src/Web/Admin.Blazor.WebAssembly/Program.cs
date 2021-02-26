@@ -1,10 +1,12 @@
-using Admin.Blazor.Shared.Data;
-using Admin.Blazor.Shared.Data.Admin;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+
+using Admin.Blazor.Shared.Data;
+using Admin.Blazor.Shared.Data.Admin;
 
 namespace Admin.Blazor.WebAssembly
 {
@@ -31,7 +33,7 @@ namespace Admin.Blazor.WebAssembly
             builder.Services.AddBootstrapBlazor();
 
             builder.Services.AddSingleton<WeatherForecastService>();
-            builder.Services.AddSingleton<IAuthService, AuthService>();
+            builder.Services.AddSingleton<AuthService>();
 
             var host = builder.Build();
 
