@@ -28,7 +28,7 @@ namespace Admin.Blazor.Server
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
-            services.AddScoped(sp => new HttpClient
+            services.AddTransient(sp => new HttpClient
             {
                 BaseAddress = new Uri("http://localhost:8000/")
             });
@@ -47,7 +47,7 @@ namespace Admin.Blazor.Server
             });
 
             services.AddSingleton<WeatherForecastService>();
-            services.AddScoped<IAuthService, AuthService>();
+            services.AddSingleton<IAuthService, AuthService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
