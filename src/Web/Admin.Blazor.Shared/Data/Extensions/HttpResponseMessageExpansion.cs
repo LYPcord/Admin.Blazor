@@ -47,5 +47,25 @@ namespace Admin.Blazor.Shared.Data
                 Msg = rm.Msg
             };
         }
+
+        public static async Task<ResponseModel> ResponseModel(this HttpResponseMessage response)
+        {
+            response.EnsureSuccessStatusCode();
+            var rm = await response.Content.ReadFromJsonAsync<ResponseModel>();
+            if (rm.Code == 1)
+            {
+                return new ResponseModel()
+                {
+                    Code = rm.Code,
+                    Msg = rm.Msg,
+                    Data = rm.Data.ToString().ToObject<ResponseModel>()
+                };
+            }
+            return new ResponseModel()
+            {
+                Code = rm.Code,
+                Msg = rm.Msg
+            };
+        }
     }
 }

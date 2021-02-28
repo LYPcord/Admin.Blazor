@@ -1,9 +1,6 @@
-﻿using Admin.Blazor.Shared.Data;
-using Admin.Blazor.Shared.Data.Admin;
+﻿using Admin.Blazor.Shared.Data.Admin;
 using Admin.Core.Common.Input;
-using Admin.Core.Common.Output;
 using Admin.Core.Model.Admin;
-using Admin.Core.Service.Admin.LoginLog.Output;
 using BootstrapBlazor.Components;
 using Microsoft.AspNetCore.Components;
 using System;
@@ -12,26 +9,25 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Admin.Core;
 
-namespace Admin.Blazor.Shared.Pages.Admins.LoginLog
+namespace Admin.Blazor.Shared.Pages.Admins.User
 {
-    public partial class LoginLog : ComponentBase
+    public partial class User : ComponentBase
     {
-        [Inject] public LoginLogService LoginLogService { get; set; }
+        [Inject] public UserService UserService { get; set; }
 
-        PageInput<LoginLogEntity> pageInput = new PageInput<LoginLogEntity>();
+        PageInput<UserEntity> pageInput = new PageInput<UserEntity>();
         private long TotalCount { get; set; }
 
         /// <summary>
-        /// OnInitializedAsync 方法
+        /// 
         /// </summary>
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
             pageInput.CurrentPage = 1;
             pageInput.PageSize = PageItemsSource?.First() ?? 0;
-            Items= await GetLoginLogs(pageInput);
+            Items =await GetUsers(pageInput);
         }
 
         /// <summary>
@@ -75,8 +71,7 @@ namespace Admin.Blazor.Shared.Pages.Admins.LoginLog
             // 数据请求
             pageInput.CurrentPage = options.PageIndex;
             pageInput.PageSize = options.PageItems;
-            items = await GetLoginLogs(pageInput);
-
+            items = await GetUsers(pageInput);
 
             return await Task.FromResult(new QueryData<BindItem>()
             {
@@ -100,102 +95,78 @@ namespace Admin.Blazor.Shared.Pages.Admins.LoginLog
             return Task.FromResult(true);
         }
 
-        private async Task<List<BindItem>> GetLoginLogs(PageInput<LoginLogEntity> page)
+        private async Task<List<BindItem>> GetUsers(PageInput<UserEntity> page)
         {
-            var logs = await LoginLogService.GetLoginLogsAsync(page);
-            TotalCount = logs.Data.Total;
-            return logs.Data.List.Select(s => new BindItem
+            var users = await UserService.GetUsersAsync(page);
+            System.Console.WriteLine(users.ToString());
+            TotalCount = users.Data.Total;
+            return users.Data.List.Select(s => new BindItem
             {
                 Id = s.Id,
                 NickName = s.NickName,
                 CreatedTime = s.CreatedTime,
-                IP = s.IP,
-                ElapsedMilliseconds = s.ElapsedMilliseconds,
+                RoleNames = string.Join(',', s.RoleNames),
                 Status = s.Status,
-                Msg = s.Msg,
-                Browser = s.Browser,
-                Os = s.Os
+                UserName = s.UserName
             }).ToList();
         }
 
         /// <summary>
-        /// 
+        /// 数据源
         /// </summary>
         private List<BindItem> Items { get; set; }
 
         /// <summary>
-        /// 
+        /// 页码
         /// </summary>
-        private IEnumerable<int> PageItemsSource => new int[] { 4, 20, 50 };
+        private IEnumerable<int> PageItemsSource => new int[] { 4, 10, 20 };
 
         /// <summary>
-        ///
+        /// 绑定数据源
         /// </summary>
         public class BindItem
         {
             /// <summary>
-            ///
+            ///  编号
             /// </summary>
-            [Display(Name = "主键")]
-            [AutoGenerateColumn(Order = 0, Ignore = true, Readonly = true)]
+            [Display(Name = "编号")]
+            [AutoGenerateColumn(Order = 10,Editable =false)]
             public long Id { get; set; }
 
             /// <summary>
-            ///操作账号
+            /// 用户名
             /// </summary>
-            //[Required(ErrorMessage = "{0}不能为空")]
-            [AutoGenerateColumn(Order = 10, Sortable = true, Filterable = true, Searchable = true)]
-            [Display(Name = "操作账号")]
+            [AutoGenerateColumn(Order = 20, Sortable = true, Filterable = true, Searchable = true, Readonly = true)]
+            [Display(Name = "姓名")]
+            public string UserName { get; set; }
+
+            /// <summary>
+            /// 昵称
+            /// </summary>
+            [Display(Name = "昵称")]
+            [AutoGenerateColumn(Order = 20, Sortable = true, Filterable = true, Searchable = true)]
             public string NickName { get; set; }
 
             /// <summary>
-            /// 登录时间
+            /// 角色
             /// </summary>
-            [AutoGenerateColumn(Order = 1, FormatString = "yyyy-MM-dd HH:mm:ss", Width = 180, Sortable = true, Filterable = true, Searchable = true)]
-            [Display(Name = "登录时间")]
-            public DateTime? CreatedTime { get; set; }
+            [Display(Name = "角色")]
+            [AutoGenerateColumn(Order = 30, Sortable = true, Filterable = true, Searchable = true)]
+            public string RoleNames { get; set; }
 
             /// <summary>
-            /// IP地址
+            /// 状态
             /// </summary>
-            [Display(Name = "IP地址")]
-            [AutoGenerateColumn(Order = 20, Sortable = true, Filterable = true, Searchable = true)]
-            public string IP { get; set; }
-
-            /// <summary>
-            /// 耗时(毫秒)
-            /// </summary>
-            [Display(Name = "耗时(毫秒)")]
+            [Display(Name = "状态")]
             [AutoGenerateColumn(Order = 40, Sortable = true, Filterable = true, Searchable = true)]
-            public long ElapsedMilliseconds { get; set; }
+            public int Status { get; set; }
 
             /// <summary>
-            /// 登录状态
+            /// 创建时间
             /// </summary>
-            [Display(Name = "登录状态")]
-            [AutoGenerateColumn(Order = 50, Sortable = true, Filterable = true)]
-            public bool Status { get; set; }
-
-            /// <summary>
-            ///登录信息
-            /// </summary>
-            [AutoGenerateColumn(Order = 10, Sortable = true, Filterable = true, Searchable = true)]
-            [Display(Name = "登录信息")]
-            public string Msg { get; set; }
-
-            /// <summary>
-            ///浏览器
-            /// </summary>
-            [AutoGenerateColumn(Order = 10, Sortable = true, Filterable = true, Searchable = true)]
-            [Display(Name = "浏览器")]
-            public string Browser { get; set; }
-
-            /// <summary>
-            ///操作系统
-            /// </summary>
-            [AutoGenerateColumn(Order = 10, Sortable = true, Filterable = true, Searchable = true)]
-            [Display(Name = "操作系统")]
-            public string Os { get; set; }
+            [AutoGenerateColumn(Order = 50, FormatString = "yyyy-MM-dd HH;mm;ss", Width = 180, Sortable = true, Filterable = true, Searchable = true)]
+            [Display(Name = "创建时间")]
+            public DateTime? CreatedTime { get; set; }
         }
     }
 }

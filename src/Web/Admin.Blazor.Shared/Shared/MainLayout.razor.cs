@@ -55,7 +55,9 @@ namespace Admin.Blazor.Shared.Shared
                 new MenuItem() { Text = "Counter", Icon = "fa fa-fw fa-check-square-o", Url = "counter" },
                 new MenuItem() { Text = "FetchData", Icon = "fa fa-fw fa-database", Url = "fetchdata" },
                 new MenuItem() { Text = "Table", Icon = "fa fa-fw fa-table", Url = "table" },
-                new MenuItem() { Text = "日志管理", Icon = "fa fa-fw fa-table", Url = "admin/log/loginlog" }
+                new MenuItem() { Text = "登录日志", Icon = "fa fa-fw fa-table", Url = "admin/loginlog" },
+                new MenuItem() { Text = "操作日志", Icon = "fa fa-fw fa-table", Url = "admin/oprationlog" },
+                new MenuItem() { Text = "用户管理", Icon = "fa fa-fw fa-table", Url = "admin/user" }
             };
 
             return menus;

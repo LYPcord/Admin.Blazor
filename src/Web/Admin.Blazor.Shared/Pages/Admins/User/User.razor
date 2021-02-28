@@ -1,16 +1,23 @@
-@page "/table"
+﻿@page "/admin/user"
 
-<h1>Table</h1>
+<h3>用户管理</h3>
 
 <Table TItem="BindItem" Items="@Items" IsPagination="true" PageItemsSource="@PageItemsSource"
        IsStriped="true" IsBordered="true" ShowSkeleton="true" AutoGenerateColumns="true"
        ShowToolbar="true" ShowSearch="true" IsMultipleSelect="true" ShowExtendButtons="true"
        OnQueryAsync="@OnQueryAsync" OnDeleteAsync="@OnDeleteAsync" OnSaveAsync="@OnSaveAsync">
     <TableColumns>
-        <TableColumn @bind-Field="@context.Complete">
+        <TableColumn @bind-Field="@context.Status">
             <Template Context="v">
-                <Switch IsDisabled="true" Value="v.Value" ShowInnerText="true" OnInnerText="是" OffInnerText="否" />
+                @if (v.Value == 0)
+                {
+                    <Badge IsPill="true" Color="(Color.Success)">正常</Badge>
+                }
+                else
+                {
+                    <Badge IsPill="true" Color="Color.Danger">异常</Badge>
+                }
             </Template>
-        </TableColumn>
+        </TableColumn>      
     </TableColumns>
 </Table>
