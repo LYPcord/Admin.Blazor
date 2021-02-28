@@ -31,7 +31,7 @@ namespace Admin.Blazor.Shared.Data.Admin
         {
             var response = await _httpClient.PostAsJsonAsync("api/Admin/Auth/Login", input);
 
-            var result =await response.ResponseJson();
+            var result = await response.ResponseJson();
 
             if (result.Code == 1) 
             {
@@ -49,7 +49,7 @@ namespace Admin.Blazor.Shared.Data.Admin
         public async Task<ResponseModel<UserInfo>> GetUserInfoAsync() 
         {
             var response = await _httpClient.GetAsync("api/Admin/Auth/GetUserInfo");
-            return await response.ResponseObject<UserInfo>();
+            return await response.ResponseModel<UserInfo>();
         }
     }
 }

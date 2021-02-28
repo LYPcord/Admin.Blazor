@@ -28,7 +28,7 @@ namespace Admin.Blazor.Shared.Data
             };
         }
 
-        public static async Task<ResponseModel<T>> ResponseObject<T>(this HttpResponseMessage response)
+        public static async Task<ResponseModel<T>> ResponseModel<T>(this HttpResponseMessage response)
         {
             response.EnsureSuccessStatusCode();
             var rm = await response.Content.ReadFromJsonAsync<ResponseModel>();

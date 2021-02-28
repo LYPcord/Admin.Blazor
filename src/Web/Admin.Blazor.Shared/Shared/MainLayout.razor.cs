@@ -3,6 +3,7 @@ using BootstrapBlazor.Components;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Admin.Blazor.Shared.Shared
 {
@@ -42,7 +43,7 @@ namespace Admin.Blazor.Shared.Shared
             // TODO: 菜单获取可以通过数据库获取，此处为示例直接拼装的菜单集合
             Menus = GetIconSideMenuItems();
 
-            await GetUserInfoAsync();
+            //await GetUserInfoAsync();
         }
 
         private static List<MenuItem> GetIconSideMenuItems()
@@ -53,7 +54,8 @@ namespace Admin.Blazor.Shared.Shared
                 new MenuItem() { Text = "Index", Icon = "fa fa-fw fa-fa", Url = "" },
                 new MenuItem() { Text = "Counter", Icon = "fa fa-fw fa-check-square-o", Url = "counter" },
                 new MenuItem() { Text = "FetchData", Icon = "fa fa-fw fa-database", Url = "fetchdata" },
-                new MenuItem() { Text = "Table", Icon = "fa fa-fw fa-table", Url = "table" }
+                new MenuItem() { Text = "Table", Icon = "fa fa-fw fa-table", Url = "table" },
+                new MenuItem() { Text = "日志管理", Icon = "fa fa-fw fa-table", Url = "admin/log/loginlog" }
             };
 
             return menus;
@@ -66,6 +68,12 @@ namespace Admin.Blazor.Shared.Shared
             {
                 UserName = rm.Data.User.UserName;
                 NickName = rm.Data.User.NickName;
+                Menus = rm.Data.Menus.Select(s => new MenuItem 
+                {
+                    Text=s.Label,
+                    Icon= "fa fa-fw fa-fa",
+                    Url=s.Path
+                }).ToList();
             }
         }
     }

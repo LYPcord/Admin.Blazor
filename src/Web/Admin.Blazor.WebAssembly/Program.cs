@@ -40,6 +40,7 @@ namespace Admin.Blazor.WebAssembly
             builder.Services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
             builder.Services.AddSingleton<WeatherForecastService>();
             builder.Services.AddScoped<AuthService>();
+            builder.Services.AddScoped<LoginLogService>();
 
             var host = builder.Build();
 

@@ -52,6 +52,7 @@ namespace Admin.Blazor.Server
             services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
             services.AddSingleton<WeatherForecastService>();
             services.AddScoped<AuthService>();
+            services.AddScoped<LoginLogService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
