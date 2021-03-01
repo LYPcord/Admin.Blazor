@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Admin.Core;
 
 namespace Admin.Blazor.Shared.Data.Admin
 {
@@ -35,8 +36,7 @@ namespace Admin.Blazor.Shared.Data.Admin
 
             if (result.Code == 1) 
             {
-                JObject jo = (JObject)JsonConvert.DeserializeObject(result.Data);
-                string token = jo["token"].ToString();
+                string token = result.Data.GetValueByKey("token");
 
                 await _localStorage.SetItemAsync("authToken", token);
                 ((ApiAuthenticationStateProvider)_authenticationStateProvider).MarkUserAsAuthenticated(token);

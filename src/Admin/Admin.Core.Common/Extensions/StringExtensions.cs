@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using Admin.Core.Common.Helpers;
+using Newtonsoft.Json.Linq;
 
 namespace Admin.Core
 {
@@ -152,6 +153,17 @@ namespace Admin.Core
         public static object ToObject(this string jsonStr, Type type)
         {
             return JsonConvert.DeserializeObject(jsonStr, type);
+        }
+
+        /// <summary>
+        /// Json字符串通过Key获取Value
+        /// </summary>
+        /// <param name="jsonStr"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static string GetValueByKey(this string jsonStr,string key) 
+        {
+            return ((JObject)JsonConvert.DeserializeObject(jsonStr))[key].ToString();
         }
     }
 }

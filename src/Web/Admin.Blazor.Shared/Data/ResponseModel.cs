@@ -14,7 +14,7 @@ namespace Admin.Blazor.Shared.Data
 
     public class ResponseModel : BaseResponseModel
     {
-        public object Data { get; set; } = new object();
+        public object Data { get; set; }
     }
 
     public class ResponseModel<T>: BaseResponseModel
