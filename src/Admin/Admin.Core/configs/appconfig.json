@@ -2,7 +2,7 @@
   //Api地址
   "urls": [ "http://*:8000" ],
   //跨域地址
-  "corUrls": [ "http://*:9000" ],
+  "corUrls": [ "http://localhost:9000", "http://127.0.0.1:9000" ],
   //租户类型：None无租户, Share共享数据库, Own独立数据库
   "tenantType": "None",
   //Swagger文档
@@ -29,7 +29,7 @@
   //验证码
   "varifyCode": {
     //启用
-    "enable": false,
+    "enable": true,
     //字体列表
     "fonts": [ "Times New Roman", "Verdana", "Arial", "Gungsuh", "Impact" ]
   }
