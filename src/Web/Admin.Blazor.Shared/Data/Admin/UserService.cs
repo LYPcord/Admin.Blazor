@@ -33,7 +33,7 @@ namespace Admin.Blazor.Shared.Data.Admin
         /// <returns></returns>
         public async Task<ResponseModel<UserUpdateBasicInput>> GetUserBasicAsync()
         {
-            string token = (_localStorage.GetItemAsync<string>("authToken")).Result;
+            string token = await _localStorage.GetItemAsync<string>("authToken");
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
             var response = await _httpClient.GetAsync("api/Admin/User/GetBasic");
             return await response.ResponseModel<UserUpdateBasicInput>();

@@ -1546,7 +1546,7 @@
             <param name="type">对象类型</param>
             <returns></returns>
         </member>
-        <member name="M:Admin.Core.StringExtensions.ToValue(System.String,System.String)">
+        <member name="M:Admin.Core.StringExtensions.GetValueByKey(System.String,System.String)">
             <summary>
             Json字符串通过Key获取Value
             </summary>
