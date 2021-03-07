@@ -113,7 +113,7 @@ namespace Admin.Blazor.Shared.Data.Admin
         {
             string token = await _localStorage.GetItemAsync<string>("authToken");
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
-            var response = await _httpClient.PutAsJsonAsync($"api/Admin/User/SoftDelete", ids);
+            var response = await _httpClient.PutAsJsonAsync($"api/Admin/User/BatchSoftDelete", ids);
             return await response.ResponseModel();
         }
 

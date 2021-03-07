@@ -42,7 +42,8 @@ namespace Admin.Blazor.WebAssembly
             builder.Services.AddScoped<AuthService>();
             builder.Services.AddScoped<LoginLogService>();
             builder.Services.AddScoped<OprationLogService>();
-            builder.Services.AddScoped<UserService>();
+            builder.Services.AddScoped<UserService>(); 
+            builder.Services.AddScoped<RoleService>();
 
             var host = builder.Build();
 

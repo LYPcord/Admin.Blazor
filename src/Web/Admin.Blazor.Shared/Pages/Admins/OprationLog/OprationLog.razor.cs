@@ -108,11 +108,11 @@ namespace Admin.Blazor.Shared.Pages.Admins.OprationLog
                 IP = s.IP,
                 ElapsedMilliseconds = s.ElapsedMilliseconds,
                 Status = s.Status,
-                Msg = s.Msg,
+                Msg = s.Msg ?? "",
                 Browser = s.Browser,
                 Os = s.Os,
-                ApiLabel=s.ApiLabel,
-                ApiPath=s.ApiPath
+                ApiLabel = s.ApiLabel,
+                ApiPath = s.ApiPath
             }).ToList();
         }
 

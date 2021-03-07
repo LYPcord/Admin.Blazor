@@ -1,4 +1,5 @@
 ﻿using Admin.Core.Common.Input;
+using Admin.Core.Common.Output;
 using Admin.Core.Model.Admin;
 using Admin.Core.Service.Admin.Role.Input;
 using Admin.Core.Service.Admin.Role.Output;
@@ -43,12 +44,12 @@ namespace Admin.Blazor.Shared.Data.Admin
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public async Task<ResponseModel<PageInput<RoleEntity>>> GetPageRoleListAsync(PageInput<RoleEntity> input)
+        public async Task<ResponseModel<PageOutput<RoleListOutput>>> GetPageRoleListAsync(PageInput<RoleEntity> input)
         {
             string token = await _localStorage.GetItemAsync<string>("authToken");
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
             var response = await _httpClient.PostAsJsonAsync($"api/Admin/Role/GetPage", input);
-            return await response.ResponseModel<PageInput<RoleEntity>>();
+            return await response.ResponseModel<PageOutput<RoleListOutput>>();
         }
 
         /// <summary>

@@ -5,7 +5,11 @@
 <Table TItem="BindItem" Items="@Items" IsPagination="true" PageItemsSource="@PageItemsSource"
        IsStriped="true" IsBordered="true" ShowSkeleton="true" AutoGenerateColumns="true"
        ShowToolbar="true" ShowSearch="true" IsMultipleSelect="true" ShowExtendButtons="true"
+       ShowEditButton="true"
        OnQueryAsync="@OnQueryAsync" OnDeleteAsync="@OnDeleteAsync" OnSaveAsync="@OnSaveAsync">
+    <TableToolbarTemplate>
+        <TableToolbarButton TItem="BindItem" Color="Color.Primary" Icon="fa fa-fw fa-edit" Text="编辑" OnClickCallback="@ShowEditDialog" />
+    </TableToolbarTemplate>
     <TableColumns>
         <TableColumn @bind-Field="@context.Status">
             <Template Context="v">
@@ -18,6 +22,50 @@
                     <Badge IsPill="true" Color="Color.Danger">异常</Badge>
                 }
             </Template>
-        </TableColumn>      
+        </TableColumn>
     </TableColumns>
+    @*<EditTemplate>
+            <div class="form-inline">
+                <div class="row">
+                    <div class="form-group col-8 col-sm-6">
+                        <BootstrapInput @bind-Value="@context.UserName" placeholder="不可为空，60字以内" maxlength="60">
+                        </BootstrapInput>
+                    </div>
+                    <div class="form-group col-8 col-sm-6">
+                        <BootstrapInput @bind-Value="@context.NickName" placeholder="不可为空，60字以内" maxlength="60">
+                        </BootstrapInput>
+                    </div>
+                    <div class="form-group col-8 col-sm-6">
+                        <MultiSelect Items="@RoleSelectedItems" @bind-Value="@context.RoleNames"></MultiSelect>
+                    </div>
+                </div>
+            </div>
+        </EditTemplate>*@
 </Table>
+
+<Modal @ref="Modal">
+    <ModalDialog Title="用户编辑" IsCentered="true">
+        <BodyTemplate>
+            <ValidateForm class="form-inline" Model="@Model">
+                <div class="form-inline">
+                    <div class="row">
+                        <div class="form-group col-8 col-sm-6">
+                            <BootstrapInput @bind-Value="@Model.UserName" placeholder="不可为空，60字以内" maxlength="60">
+                            </BootstrapInput>
+                        </div>
+                        <div class="form-group col-8 col-sm-6">
+                            <BootstrapInput @bind-Value="@Model.NickName" placeholder="不可为空，60字以内" maxlength="60">
+                            </BootstrapInput>
+                        </div>
+                        <div class="form-group col-8 col-sm-6">
+                            @*<MultiSelect Items="@RoleSelectedItems" @bind-Value="@Model.RoleNames"></MultiSelect>*@
+                        </div>
+                    </div>
+                </div>
+            </ValidateForm>
+        </BodyTemplate>
+        <FooterTemplate>
+            <Button Text="确定" Icon="fa fa-check-square-o" OnClick="@OnConfirm" />
+        </FooterTemplate>
+    </ModalDialog>
+</Modal>

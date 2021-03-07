@@ -43,48 +43,15 @@ namespace Admin.Blazor.Shared.Pages.Admins.LoginLog
         {
             var items = Items;
 
-            var isSearched = false;
-            if (options.Searchs.Any())
-            {
-                // 针对 SearchText 进行模糊查询
-                items = items.Where(options.Searchs.GetFilterFunc<BindItem>(FilterLogic.Or)).ToList();
-                isSearched = true;
-            }
-
-            // 过滤
-            var isFiltered = false;
-            if (options.Filters.Any())
-            {
-                items = items.Where(options.Filters.GetFilterFunc<BindItem>()).ToList();
-
-                // 通知内部已经过滤数据了
-                isFiltered = true;
-            }
-
-            // 排序
-            var isSorted = false;
-            if (!string.IsNullOrEmpty(options.SortName))
-            {
-                var invoker = items.GetSortLambda().Compile();
-                items = invoker(items, options.SortName, options.SortOrder).ToList();
-
-                // 通知内部已经过滤数据了
-                isSorted = true;
-            }
-
             // 数据请求
             pageInput.CurrentPage = options.PageIndex;
             pageInput.PageSize = options.PageItems;
             items = await GetLoginLogs(pageInput);
 
-
             return await Task.FromResult(new QueryData<BindItem>()
             {
                 Items = items,
-                TotalCount = TotalCount,
-                IsSorted = isSorted,
-                IsFiltered = isFiltered,
-                IsSearch = isSearched
+                TotalCount = TotalCount
             });
         }
 
@@ -112,7 +79,7 @@ namespace Admin.Blazor.Shared.Pages.Admins.LoginLog
                 IP = s.IP,
                 ElapsedMilliseconds = s.ElapsedMilliseconds,
                 Status = s.Status,
-                Msg = s.Msg,
+                Msg = s.Msg ?? "",
                 Browser = s.Browser,
                 Os = s.Os
             }).ToList();

@@ -57,8 +57,7 @@ namespace Admin.Blazor.Shared.Data
                 return new ResponseModel()
                 {
                     Code = rm.Code,
-                    Msg = rm.Msg,
-                    Data = rm.Data.ToString().ToObject<ResponseModel>()
+                    Msg = rm.Msg
                 };
             }
             return new ResponseModel()
